@@ -18,7 +18,7 @@ class Stock(object):
         self.market_price = market_price
 
     def __repr__(self):
-        fmt = "Stock: {} | Type: {} | Last Dividend: {} | Fixed Dividend: {} | Par Value : {} | Market price: {}"
-        print(fmt.format(self.symbol, self.stock_type, self.last_dividend,
-                         self.fixed_dividend, self.par_value, self.market_price))
+        fmt = "Stock: {} | Type: {} | Last Dividend: {} | Fixed Dividend: {} | Par Value : {} | Market price: {}\n"
+        return fmt.format(self.symbol, self.stock_type, self.last_dividend,
+                         self.fixed_dividend, self.par_value, self.market_price)
 

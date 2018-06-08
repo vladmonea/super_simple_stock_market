@@ -6,12 +6,12 @@ def gbce(stocks):
 
 
 def dividend_yield(stock):
-    last_dividend = stock.last_divided or 1
+    last_dividend = stock.last_dividend or 1
     return last_dividend * stock.par_value / stock.market_price
 
 
 def pe_ratio(stock):
-    return stock.market_price / stock.last_dividend
+    return stock.market_price / stock.last_dividend if stock.last_dividend else 'N/A'
 
 
 def volume_weighted_stock_price(trades):
@@ -19,7 +19,7 @@ def volume_weighted_stock_price(trades):
     quantity = 0
 
     for trade in trades:
-        trade_val += trade.market_price * trade.quantity
+        trade_val += trade.price * trade.quantity
         quantity += trade.quantity
 
     return trade_val / quantity

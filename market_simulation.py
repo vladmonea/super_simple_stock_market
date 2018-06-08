@@ -93,14 +93,25 @@ def simulate_market():
         all_trades.append(current_trade)
     return all_trades
 
-simulate_market()
+
 
 def get_last_fifteen_minutes_trades(trades):
     now = datetime.now()
-    fifteen_mins_ago = now - datetime.timestamp(minutes=15)
+    fifteen_mins_ago = now - timedelta(minutes=15)
     return [trade for trade in trades
             if trade.timestamp > fifteen_mins_ago]
 
 
-print get_last_fifteen_minutes_trades(simulate_market())
+market = simulate_market()
+recent = get_last_fifteen_minutes_trades(market)
 
+print("Current market:\n")
+for trade in market:
+    print(trade)
+    print("Stock Dividend yield: {}\n".format(dividend_yield(trade.stock)))
+    print("Stock P/E Ratio: {}\n".format(pe_ratio(trade.stock)))
+    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+print("Volume weighted stock price: {}".format(volume_weighted_stock_price(recent)))
+
+print("")
