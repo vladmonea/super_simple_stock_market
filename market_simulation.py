@@ -27,11 +27,11 @@ def get_stock_type():
 
 
 def get_trade_price():
-    return random.randint(0, 100)
+    return random.randint(1, 100)
 
 
 def get_market_price():
-    return random.randint(0, 10)
+    return random.randint(1, 10)
 
 
 TEST_DATA = [
@@ -94,7 +94,6 @@ def simulate_market():
     return all_trades
 
 
-
 def get_last_fifteen_minutes_trades(trades):
     now = datetime.now()
     fifteen_mins_ago = now - timedelta(minutes=15)
@@ -107,11 +106,8 @@ recent = get_last_fifteen_minutes_trades(market)
 
 print("Current market:\n")
 for trade in market:
-    print(trade)
-    print("Stock Dividend yield: {}\n".format(dividend_yield(trade.stock)))
-    print("Stock P/E Ratio: {}\n".format(pe_ratio(trade.stock)))
-    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    fmt = "{} | Dividend yield: {} | P/E Ratio: {}\n"
+    print(fmt.format(trade, dividend_yield(trade.stock), pe_ratio(trade.stock)))
 
+print("GBCE index: {}".format(gbce([trade.stock for trade in market])))
 print("Volume weighted stock price: {}".format(volume_weighted_stock_price(recent)))
-
-print("")
