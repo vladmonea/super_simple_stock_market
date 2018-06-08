@@ -18,6 +18,11 @@ class Trade(object):
         self.indicator = indicator
         self.price = price
 
+    def __repr__(self):
+        fmt = "Trade summary\nStock: {} | Time: {} | Trade Indicator: {} | Quantity: {} | Price: {}"
+        print(fmt.format(self.stock.symbol, self.timestamp,
+                         self.indicator, self.quantity, self.price))
+
     @property
     def stock(self):
         return self._stock
